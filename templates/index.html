@@ -1,0 +1,19 @@
+
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block style %}<link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+</head>{% endblock %}
+
+{% block content %}
+  <p style="margin-"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto dignissimos dolor<br>
+      dolore ducimus voluptatem! </strong>Assumenda autem dicta dolor illum maxime necessitatibus odit<br>
+      totam veritatis voluptatibus. Necessitatibus nisi soluta vero?</p>
+    <div id="chart">
+   <embed type="image/svg+xml" src= {{ pie_data|safe }} />
+    </div>
+    <div id="chart">
+   <embed type="image/svg+xml" src= {{ line_data|safe }} />
+    </div>
+{% endblock %}
+
+

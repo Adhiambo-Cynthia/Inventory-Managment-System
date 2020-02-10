@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}line_Graph{% endblock %}
+{% block content %}
+<div id="chart">
+   <embed type="image/svg+xml" src= {{ line_data|safe }} />
+    </div>
+{% endblock %}
