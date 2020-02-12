@@ -23,7 +23,7 @@ def person(name,age):
 
 @app.route('/index')
 def index():
-    conn=psycopg2.connect("dbname = dffhf6pdqo27uj Port= 5432 user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
+    conn=psycopg2.connect("dbname = dffhf6pdqo27uj user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
     cur = conn.cursor()
     cur.execute("CREATE TABLE inventories (id serial PRIMARY KEY, name varchar, bp numeric ,sp numeric, type varchar);")
     cur.execute("CREATE TABLE stock (id serial PRIMARY KEY, inv_id integer,stock numeric, created_at date,FOREIGN KEY (inv_id) REFERENCES inventories(id));")
