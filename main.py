@@ -65,9 +65,8 @@ def index():
             insert into stock (id, inv_id, stock, created_at) values (38, 1, 1302.91, '2/10/2019');
             insert into stock (id, inv_id, stock, created_at) values (39, 28, 7218.72, '3/16/2020');
             insert into stock(id, inv_id, stock, created_at) values (40, 22, 7930.9, '10/5/2020');
-
                 """)
-    cur.fetchall()
+
 
     conn.commit()
     cur.close()
