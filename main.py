@@ -214,7 +214,7 @@ insert into sales (id, inv_id, quantity, created_at) values (40, 25, 1610.45, '3
 
    """)
     cur.execute("SELECT * FROM sales;")
-    cur.fetchall()
+    records=cur.fetchall()
     conn.commit()
     cur.close()
     conn.close()
@@ -264,7 +264,7 @@ insert into stock (id, inv_id, stock, created_at) values (36, 27, 9774.26, '7/5/
 insert into stock (id, inv_id, stock, created_at) values (37, 21, 4724.6, '1/11/2020');
 insert into stock (id, inv_id, stock, created_at) values (38, 1, 1302.91, '2/10/2019');
 insert into stock (id, inv_id, stock, created_at) values (39, 28, 7218.72, '3/16/2020');
-insert into stock (id, inv_id, stock, created_at) values (40, 22, 7930.9, '10/5/2020');
+insert into stock(id, inv_id, stock, created_at) values (40, 22, 7930.9, '10/5/2020');
 
     """)
     cur.execute("SELECT * FROM stock;")
