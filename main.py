@@ -4,12 +4,6 @@ import psycopg2
 
 app = Flask(__name__)
 
-
-
-@app.route('/')
-def hello_world(name):
-    #return "Hello!" + name
-    return f'Hello {name}'
 @app.route('/about')
 def about():
         return render_template("about.html", header="About Page")
@@ -21,7 +15,7 @@ def service():
 def person(name,age):
     return f'{name} is {age} years old'
 
-@app.route('/index')
+@app.route('/')
 def index():
     conn=psycopg2.connect("dbname = dffhf6pdqo27uj user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
     cur = conn.cursor()
@@ -80,7 +74,7 @@ def index():
     # cur.execute("SELECT * FROM stock;")
     # cur.fetchall()
     conn.commit()
-    cur.close()
+    # cur.close()
     conn.close()
 
     # cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
@@ -148,7 +142,7 @@ def line():
     line_chart.x_labels = map(str,x)
     line_chart.add("Sales",y)
     line_data=line_chart.render_data_uri()
-    return render_template("line.html",line_data=line_data)
+    return render_template("line.html")
 
     # line_chart=pygal.Line()
     # line_chart.title = 'Browser usage evolution (in %)'
