@@ -71,10 +71,9 @@ def index():
     #
     #             """)
 
-        cur.fetchall()
-        conn.commit()
-        cur.close()
-        conn.close()
+    conn.commit()
+    cur.close()
+    conn.close()
 
     # cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
     #                  SUM(s.quantity) as total_sales
