@@ -141,7 +141,7 @@ def line():
     line_chart.x_labels = map(str,x)
     line_chart.add("Sales",y)
     line_data=line_chart.render_data_uri()
-    return render_template("line.html")
+    return render_template("line.html",line_data=line_data)
 
     # line_chart=pygal.Line()
     # line_chart.title = 'Browser usage evolution (in %)'
