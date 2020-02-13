@@ -21,7 +21,7 @@ def index():
     cur = conn.cursor()
     cur.execute("SELECT DROP inventories")
     cur.execute("SELECT DROP stock")
-    cur.execute("SELECT DROP sales")
+    # cur.execute("SELECT DROP sales")
     #
     # cur.execute("""create table stock (
     #     	id INT,
