@@ -19,7 +19,7 @@ def person(name,age):
 def index():
     conn=psycopg2.connect("dbname = dffhf6pdqo27uj user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
     cur = conn.cursor()
-    cur.execute("SELECT DROP inventories")
+    # cur.execute("SELECT DROP inventories")
     # cur.execute("SELECT DROP stock")
     cur.execute("SELECT DROP sales")
     #
