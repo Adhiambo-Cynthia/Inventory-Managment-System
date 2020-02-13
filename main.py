@@ -113,19 +113,19 @@ def index():
 
 
 
-    x = []
-    y = []
-    for i in records:
-        x.append(i[0])
-        y.append(i[1])
+    # x = []
+    # y = []
+    # for i in records:
+    #     x.append(i[0])
+    #     y.append(i[1])
+    #
+    # line_chart = pygal.Line()
+    # line_chart.title = 'sales 2019'
+    # line_chart.x_labels = map(str, x)
+    # line_chart.add("Sales", y)
+    # line_data = line_chart.render_data_uri()
 
-    line_chart = pygal.Line()
-    line_chart.title = 'sales 2019'
-    line_chart.x_labels = map(str, x)
-    line_chart.add("Sales", y)
-    line_data = line_chart.render_data_uri()
-
-    return render_template('index.html', pie_data=pie_data, line_data=line_data)
+    return render_template('index.html', pie_data=pie_data,)
 @app.route('/line')
 def line():
     data_line=[("Jan", 30),
