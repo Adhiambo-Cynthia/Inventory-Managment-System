@@ -25,62 +25,59 @@ def person(name,age):
 def index():
     conn=psycopg2.connect("dbname = dffhf6pdqo27uj user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
     cur = conn.cursor()
-    cur.execute("""create table sales (
-    	id INT,
-    	inv_id INT,
-    	quantity DECIMAL(7,2),
-    	created_at DATE
-    );
-    insert into sales (id, inv_id, quantity, created_at) values (1, 16, 538.45, '5/14/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (2, 13, 7801.14, '9/13/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (3, 25, 7694.8, '6/23/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (4, 26, 7791.22, '6/19/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (5, 3, 7135.58, '9/10/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (6, 18, 2854.37, '5/15/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (7, 27, 5035.35, '5/4/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (8, 25, 5216.47, '8/12/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (9, 27, 7040.34, '3/3/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (10, 8, 5930.77, '4/11/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (11, 15, 5552.86, '9/2/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (12, 14, 7503.14, '5/7/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (13, 17, 6867.12, '10/13/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (14, 13, 8644.56, '3/10/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (15, 10, 3364.19, '7/17/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (16, 9, 4166.68, '10/10/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (17, 14, 7323.69, '5/26/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (18, 22, 2568.38, '9/21/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (19, 20, 469.79, '12/20/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (20, 11, 9362.65, '3/15/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (21, 19, 96.32, '8/2/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (22, 12, 4837.4, '7/14/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (23, 20, 2065.14, '3/22/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (24, 5, 7766.79, '12/4/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (25, 6, 3763.41, '9/9/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (26, 15, 2638.67, '8/19/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (27, 28, 4992.87, '6/30/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (28, 16, 145.89, '8/22/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (29, 24, 4638.07, '11/14/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (30, 8, 7026.3, '12/12/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (31, 21, 4713.49, '7/17/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (32, 25, 5281.33, '11/3/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (33, 23, 3360.82, '10/14/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (34, 7, 9442.02, '7/30/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (35, 28, 8352.62, '4/8/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (36, 8, 6171.89, '2/21/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (37, 6, 9109.22, '6/21/2020');
-    insert into sales (id, inv_id, quantity, created_at) values (38, 8, 9456.51, '3/31/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (39, 2, 8044.91, '7/8/2019');
-    insert into sales (id, inv_id, quantity, created_at) values (40, 25, 1610.45, '3/5/2019');
+    cur.execute("""create table stock (
+        	id INT,
+        	inv_id INT,
+        	stock DECIMAL(7,2),
+        	created_at DATE
+        );
+        insert into stock (id, inv_id, stock, created_at) values (1, 28, 2530.71, '11/15/2019');
+        insert into stock (id, inv_id, stock, created_at) values (2, 1, 6677.35, '6/28/2019');
+        insert into stock (id, inv_id, stock, created_at) values (3, 4, 7819.44, '9/23/2019');
+        insert into stock (id, inv_id, stock, created_at) values (4, 5, 9846.09, '8/14/2019');
+        insert into stock (id, inv_id, stock, created_at) values (5, 18, 7414.54, '12/3/2019');
+        insert into stock (id, inv_id, stock, created_at) values (6, 4, 4155.82, '6/11/2019');
+        insert into stock (id, inv_id, stock, created_at) values (7, 22, 8829.03, '1/19/2019');
+        insert into stock (id, inv_id, stock, created_at) values (8, 12, 6033.72, '3/25/2020');
+        insert into stock (id, inv_id, stock, created_at) values (9, 19, 6022.82, '9/30/2019');
+        insert into stock (id, inv_id, stock, created_at) values (10, 20, 6746.16, '9/3/2020');
+        insert into stock (id, inv_id, stock, created_at) values (11, 11, 271.97, '6/10/2020');
+        insert into stock (id, inv_id, stock, created_at) values (12, 14, 1259.4, '3/14/2020');
+        insert into stock (id, inv_id, stock, created_at) values (13, 5, 2412.3, '5/26/2019');
+        insert into stock (id, inv_id, stock, created_at) values (14, 28, 3420.05, '3/14/2019');
+        insert into stock (id, inv_id, stock, created_at) values (15, 15, 4233.19, '2/26/2020');
+        insert into stock (id, inv_id, stock, created_at) values (16, 20, 3006.08, '3/7/2019');
+        insert into stock (id, inv_id, stock, created_at) values (17, 6, 8660.08, '4/15/2019');
+        insert into stock (id, inv_id, stock, created_at) values (18, 19, 8897.59, '1/20/2020');
+        insert into stock (id, inv_id, stock, created_at) values (19, 7, 9776.91, '11/23/2019');
+        insert into stock (id, inv_id, stock, created_at) values (20, 12, 3447.28, '9/12/2020');
+        insert into stock (id, inv_id, stock, created_at) values (21, 6, 5731.3, '9/24/2019');
+        insert into stock (id, inv_id, stock, created_at) values (22, 13, 1671.89, '5/23/2019');
+        insert into stock (id, inv_id, stock, created_at) values (23, 29, 5380.14, '4/25/2019');
+        insert into stock (id, inv_id, stock, created_at) values (24, 15, 2962.08, '7/15/2019');
+        insert into stock (id, inv_id, stock, created_at) values (25, 19, 2821.84, '1/31/2019');
+        insert into stock (id, inv_id, stock, created_at) values (26, 20, 5532.23, '8/25/2020');
+        insert into stock (id, inv_id, stock, created_at) values (27, 7, 8098.29, '11/16/2019');
+        insert into stock (id, inv_id, stock, created_at) values (28, 12, 4895.13, '3/12/2020');
+        insert into stock (id, inv_id, stock, created_at) values (29, 27, 2355.97, '8/7/2019');
+        insert into stock (id, inv_id, stock, created_at) values (30, 27, 9066.83, '9/2/2020');
+        insert into stock (id, inv_id, stock, created_at) values (31, 2, 3999.27, '1/27/2019');
+        insert into stock (id, inv_id, stock, created_at) values (32, 13, 92.75, '8/28/2020');
+        insert into stock (id, inv_id, stock, created_at) values (33, 23, 6697.54, '4/5/2019');
+        insert into stock (id, inv_id, stock, created_at) values (34, 20, 6723.54, '6/29/2020');
+        insert into stock (id, inv_id, stock, created_at) values (35, 11, 7946.35, '7/27/2019');
+        insert into stock (id, inv_id, stock, created_at) values (36, 27, 9774.26, '7/5/2019');
+        insert into stock (id, inv_id, stock, created_at) values (37, 21, 4724.6, '1/11/2020');
+        insert into stock (id, inv_id, stock, created_at) values (38, 1, 1302.91, '2/10/2019');
+        insert into stock (id, inv_id, stock, created_at) values (39, 28, 7218.72, '3/16/2020');
+        insert into stock(id, inv_id, stock, created_at) values (40, 22, 7930.9, '10/5/2020');
 
-       """)
-    cur.execute("SELECT * FROM sales;")
-    records = cur.fetchall()
+            """)
+    cur.execute("SELECT * FROM stock;")
+    cur.fetchall()
     conn.commit()
     cur.close()
     conn.close()
-
-
-
 
     # cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
     #                  SUM(s.quantity) as total_sales
