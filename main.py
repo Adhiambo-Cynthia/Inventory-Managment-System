@@ -21,7 +21,7 @@ def create_tables():
 
 
 
-conn=psycopg2.connect("dbname = inventory_system user=postgres host=localhost port=5432 password=1234")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
 
 cur = conn.cursor()
 
