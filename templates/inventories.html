@@ -1,10 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+    {% extends "layout.html" %}
+
+    {% block title %}IMS{% endblock %}
+    {% block content %}
+
+    <div class="container">
+        <h2>Inventory Managment System</h2>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Inventory</button>
+           <!-- Search form -->
+        <form class="form-inline">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+         </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Table Inventories</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action={{ url_for ('inventories')}}>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Name</label>
+                                <input name="name" type="text" class="form-control" id="formGroupExampleInput"
+                                       placeholder="Apples">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Type</label>
+                                <select class="form-control" id="exampleFormControlSelect2" name="type">
+                                    <option>Product</option>
+                                    <option>Service</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Buying Price</label>
+                                <input name="buying_price" type="text" class="form-control" id="formGroupExampleInput2"
+                                       placeholder="5$">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Selling Price</label>
+                                <input name="selling_price" type="text" class="form-control" id="formGroupExampleInput2"
+                                       placeholder="6.5$">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Buying Price</th>
+                <th scope="col">Selling Price</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set count = namespace(value=1) %}
+            {% for each in records %}
+            <tr>
+                <th scope="row">{{ count.value }}</th>
+                <td>{{ each.name }}</td>
+                <td>{{ each.type }}</td>
+
+                <td>
+                    {% for e in remStock %}
+                        {% if e[0]==each.id %}
+                        {{ e[1] }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ each.bp }}</td>
+                <td>{{ each.sp }}</td>
+                <td>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#addstock{{ each.id }}">Add Stock</button>
+                    <div class="modal fade" id="addstock{{ each.id }}" role="dialog">
+                        <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Stock</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ url_for('stock', inv_id = each.id) }}">
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Stock</label>
+                                <input name="stock" type="number" class="form-control" id="formGroupExampleInput"
+                                       placeholder="Stock Quantity">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#makesale{{ each.id }}">Make Sale</button>
+                    <div class="modal fade" id="makesale{{ each.id }}" role="dialog">
+                        <div class="modal-dialog">
+                    <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Make Sale</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ url_for('sales', inv_id = each.id) }}">
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Quantity</label>
+                                <input name="sale" type="number" class="form-control" id="formGroupExampleInput"
+                                       placeholder="Sale Quantity">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Edit Sale</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">View Sale</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Delete Sale</button>
+                </td>
+
+            </tr>
+            {% set count.value = count.value + 1 %}
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+    </div>
+    </div>
+
+    {% endblock %}

@@ -1,24 +1,112 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from config import Development
 import pygal
 import psycopg2
 
+
+
+
 app = Flask(__name__)
+app.config.from_object(Development)
 
-@app.route('/about')
-def about():
-        return render_template("about.html", header="About Page")
+db = SQLAlchemy(app)
+from models.stock import Stock
+from models.sales import Sales
+from models.inventory import Inventories
 
-@app.route('/service')
-def service():
-    return render_template("service.html")
-@app.route('/person/<name>/<int:age>')
-def person(name,age):
-    return f'{name} is {age} years old'
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
+
+conn=psycopg2.connect("dbname = inventory_system user=postgres host=localhost port=5432 password=1234")
+
+cur = conn.cursor()
+
+# @app.route('/about')
+# def about():
+#         return render_template("about.html", header="About Page")
+#
+
+
+# @app.route('/person/<name>/<int:age>')
+# def person(name,age):
+#     return f'{name} is {age} years old'
+@app.route('/inventories', methods=['POST','GET'])
+def inventories():
+    # http verbs (post,put/update get,delete)-help you create,read,delete from database
+    r = Inventories.query.all()
+    cur.execute("""SELECT inv_id, sum(quantity) as "stock"
+            	FROM ((SELECT st.inv_id, sum(stock) as "quantity"
+            	FROM public.new_stock as st
+            	GROUP BY inv_id) union all
+            		 (SELECT sa.inv_id, - sum(quantity) as "quantity"
+            	FROM public.new_sales as sa
+            	GROUP BY inv_id) 
+            		 ) stsa
+            	GROUP BY inv_id
+            	ORDER BY inv_id""")
+
+    remStock = cur.fetchall()
+    # for e in r:
+    #     print(e.name)
+    #     print(e.type)
+    #     print(e.buying_price)
+    #     print(e.selling_price)
+
+
+    if request.method=='POST':
+        name= request.form['name']
+        type = request.form['type']
+        buying_price = request.form['buying_price']
+        selling_price = request.form['selling_price']
+
+        records = Inventories(name=name,type=type,bp=buying_price,sp=selling_price )
+        db.session.add(records)
+        db.session.commit()
+
+        return redirect(url_for('inventories'))
+    return render_template('inventories.html',records=r, remStock=remStock)
+
+@app.route('/stock/<inv_id>', methods=['POST', 'GET'])
+def stock(inv_id):
+        # http verbs (post,put/update get,delete)-help you create,read,delete from database
+        if request.method == 'POST':
+            stock = request.form['stock']
+
+            record = Stock(inv_id=inv_id, stock=stock)
+            db.session.add(record)
+            db.session.commit()
+
+            return redirect(url_for('inventories'))
+
+
+
+
+
+        return render_template('inventories.html' )
+
+
+@app.route('/sales/<inv_id>', methods=['POST','GET'])
+def sales(inv_id):
+    # http verbs (post,put/update get,delete)-help you create,read,delete from database
+    if request.method=='POST':
+        sale= request.form['sale']
+        print(sale)
+        record = Sales(inv_id=inv_id,quantity=sale)
+        db.session.add(record)
+        db.session.commit()
+
+        return redirect(url_for('inventories'))
+
+    return render_template('inventories.html')
+
 
 @app.route('/')
 def index():
-    conn=psycopg2.connect("dbname = dffhf6pdqo27uj user=dpxcczdczuepco host= ec2-52-73-247-67.compute-1.amazonaws.com password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
-    cur = conn.cursor()
+
 
     cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
                      SUM(s.quantity) as total_sales
