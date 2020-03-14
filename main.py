@@ -21,7 +21,7 @@ def create_tables():
 
 
 
-conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=1234567")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=12345678")
 
 cur = conn.cursor()
 
@@ -29,10 +29,17 @@ cur = conn.cursor()
 def home():
         return render_template("index.html")
 
-
 @app.route('/about')
 def about():
-        return render_template("about.html", header="About Page")
+        return render_template("index.html")
+@app.route('/services')
+def services():
+        return render_template("index.html")
+
+
+# @app.route('/about')
+# def about():
+#         return render_template("about.html", header="About Page")
 
 
 # @app.route('/person/<name>/<int:age>')
@@ -41,7 +48,8 @@ def about():
 @app.route('/inventories', methods=['POST','GET'])
 def inventories():
     # http verbs (post,put/update get,delete)-help you create,read,delete from database
-    r = Inventories.query.all()
+    r = Inventories.query.order_by(Inventories.id).all()
+
     cur.execute("""SELECT inv_id, sum(quantity) as "stock"
             	FROM ((SELECT st.inv_id, sum(stock) as "quantity"
             	FROM public.new_stock as st
@@ -54,12 +62,6 @@ def inventories():
             	ORDER BY inv_id""")
 
     remStock = cur.fetchall()
-    # for e in r:
-    #     print(e.name)
-    #     print(e.type)
-    #     print(e.buying_price)
-    #     print(e.selling_price)
-
 
     if request.method=='POST':
         name= request.form['name']
@@ -106,7 +108,37 @@ def sales(inv_id):
         return redirect(url_for('inventories'))
 
     return render_template('inventories.html')
+@app.route('/edit/<inv_id>', methods=['POST','GET'])
+def edit(inv_id):
+    # http verbs (post,put/update get,delete)-help you create,read,delete from database
+    if request.method=='POST':
+        name = request.form['name']
+        type = request.form['type']
+        buying_price = request.form['buying_price']
+        selling_price = request.form['selling_price']
 
+        record = Inventories.query.filter_by(id=inv_id).first()
+        record.name = name
+        record.type = type
+        record.bp = buying_price
+        record.sp = selling_price
+        db.session.commit()
+
+
+
+        return redirect(url_for('inventories'))
+    return render_template('inventories.html')
+@app.route('/delete/<inv_id>', methods=['POST','GET'])
+def delete(inv_id):
+    if request.method == 'POST':
+        record = Inventories.query.filter_by(id=inv_id).first()
+        Stock.query.filter_by(inv_id=inv_id).delete()
+        Sales.query.filter_by(inv_id=inv_id).delete()
+        db.session.delete(record)
+
+        db.session.commit()
+        return redirect(url_for('inventories'))
+    return render_template('inventories.html')
 
 @app.route('/dashboard')
 def charts():

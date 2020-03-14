@@ -14,7 +14,7 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-black-75 font-weight-light mb-5">Providing an effective approach in inventory management for your business.</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('about') }}">Find Out More</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('about', _anchor='about') }}">Find Out More</a>
         </div>
       </div>
     </div>
@@ -35,7 +35,8 @@
             <div class="border-top my-3"></div>
             <h5 class="text-white mb-4">At CAD-TECH solutions, we've carefully designed a system for you to meet these needs<br></h5>
             <h3 class="text-white mt-0">We've got what you need!</h3>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ url_for('inventories') }}">Get Started!</a><br>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ url_for('services', _anchor='services') }}">Get Started!</a>
+            <div style="height: 20px"></div>
         </div>
       </div>
     </div>
@@ -75,6 +76,29 @@
             <h3 class="h4 mb-2">Made with Love</h3>
             <p class="text-muted mb-0">Is it really effective if it's not made with love?</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section><br>
+    <!-- Contact Section -->
+  <section class="page-section bg-secondary" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0 text-white">Let's Get In Touch!</h2>
+          <hr class="divider my-4">
+          <p class="text-white mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+          <i class="fas fa-phone fa-3x mb-3 text-white"></i>
+          <div class="text-white">+254 711 111 222</div>
+        </div>
+        <div class="col-lg-4 mr-auto text-center">
+          <i class="fas fa-envelope fa-3x mb-3 text-white"></i>
+          <!-- Make sure to change the email address in anchor text AND the link below! -->
+          <a class="d-block text-white" href="mailto:contact@yourwebsite.com">contact@CAD_tech.com</a>
         </div>
       </div>
     </div>
