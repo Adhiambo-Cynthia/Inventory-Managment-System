@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+
+
+
+{% block content %}
+  <p><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto dignissimos dolor<br>
+      dolore ducimus voluptatem! </strong>Assumenda autem dicta dolor illum maxime necessitatibus odit<br>
+      totam veritatis voluptatibus. Necessitatibus nisi soluta vero?</p>
+    <div id="chart">
+   <embed type="image/svg+xml" src= {{ pie_data|safe }} />
+    </div>
+    <div id="chart">
+   <embed type="image/svg+xml" src= {{ line_data|safe }} />
+    </div>
+{% endblock %}

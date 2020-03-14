@@ -1,4 +1,5 @@
-#chart{
-    width: 40%;
-
+.landing{
+    background-image: url("../img/mast-headbg.JPG");
+    background-size: cover;
+    background-repeat: no-repeat;
 }

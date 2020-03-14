@@ -21,14 +21,18 @@ def create_tables():
 
 
 
-conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=1234567")
 
 cur = conn.cursor()
 
-# @app.route('/about')
-# def about():
-#         return render_template("about.html", header="About Page")
-#
+@app.route('/')
+def home():
+        return render_template("index.html")
+
+
+@app.route('/about')
+def about():
+        return render_template("about.html", header="About Page")
 
 
 # @app.route('/person/<name>/<int:age>')
@@ -104,8 +108,8 @@ def sales(inv_id):
     return render_template('inventories.html')
 
 
-@app.route('/')
-def index():
+@app.route('/dashboard')
+def charts():
 
 
     cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
@@ -139,7 +143,7 @@ def index():
     line_chart.add("Sales", y)
     line_data = line_chart.render_data_uri()
 
-    return render_template('index.html', pie_data=pie_data,line_data=line_data)
+    return render_template('dashboard.html', pie_data=pie_data,line_data=line_data)
 @app.route('/line')
 def line():
     data_line=[("Jan", 30),
