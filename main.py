@@ -21,7 +21,7 @@ def create_tables():
 
 
 
-conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=12345678")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
 
 cur = conn.cursor()
 
@@ -154,9 +154,9 @@ def charts():
     cur.close()
     conn.close()
 
-    data=[("Instagram", 30),("Twitter", 10), ("Facebook", 50), ("Snapchat", 10)]
+    data=[("Jumia", 20),("Instagram", 15), ("Website", 25), ("Shop-visits", 40)]
     pie_chart=pygal.Pie()
-    pie_chart.title="Social Media Usage in Kenya"
+    pie_chart.title="Selling Mediums Used"
     pie_chart.add(data[0][0],data[0][1])
     pie_chart.add(data[1][0],data[1][1])
     pie_chart.add(data[2][0],data[2][1])
@@ -172,7 +172,7 @@ def charts():
     line_chart = pygal.Line()
     line_chart.title = 'sales 2019'
     line_chart.x_labels = map(str, x)
-    line_chart.add("Sales", y)
+    line_chart.add("Monthly Sales", y)
     line_data = line_chart.render_data_uri()
 
     return render_template('dashboard.html', pie_data=pie_data,line_data=line_data)
@@ -211,9 +211,6 @@ def line():
     # return render_template('line.html', line_data=line_data)
 
 
-@app.route('/add/<int:one>/<int:two>')
-def addition(one,two):
-    return str(one+two)
 
 
 
