@@ -1,5 +1,14 @@
 .landing{
-    background-image: url("../img/mast-headbg.JPG");
+    height: 600px;
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("mast-bg.JPG");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+li{
+    margin-right: 20px;
+}
+li:hover{
+    opacity: 0.6;
 }
