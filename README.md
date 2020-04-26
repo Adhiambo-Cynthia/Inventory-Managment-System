@@ -13,20 +13,20 @@ This is an inventory Managment system which can be used by small retail shops or
 2. Training the system using Machine Learning to be able to forecast future sales and appropriate stock needed
 ---using Jupyter Notebook  and pandas library
 ## Technologies Used
-*Python 3
-*Bootstrap 4
-*Flask 1.1.1
-*Flask-SQLAlchemy 2.4.1
-*Jinja2 2.11.1
-*psycopg2 2.8.4
-*pygal 2.4.0
-*SQLAlchemy 1.3.15
-*Postgresql database managed using pgAdmin 4
+* Python 3
+* Bootstrap 4
+* Flask 1.1.1
+* Flask-SQLAlchemy 2.4.1
+* Jinja2 2.11.1
+* psycopg2 2.8.4
+* pygal 2.4.0
+* SQLAlchemy 1.3.15
+* Postgresql database managed using pgAdmin 4
 ### Project Structure
-*The main python file is the 'main.py' file commonly reffered to as app.py by some developers.
-*All pages rendered in the browser are in the 'templates' folder and styles in the 'static' folder
-*The 'models' folder contains the three tables run by the sqlalchemy each in a separate python file.
-*'requirements.txt' file which shows all the dependancies used in the project   
+* The main python file is the 'main.py' file commonly reffered to as app.py by some developers.
+* All pages rendered in the browser are in the 'templates' folder and styles in the 'static' folder
+* The 'models' folder contains the three tables run by the sqlalchemy each in a separate python file.
+* 'requirements.txt' file which shows all the dependancies used in the project   
 
 
 ### Project setup
