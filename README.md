@@ -70,6 +70,6 @@ Use a virtual environment to manage the dependencies for your project, both in d
 Python 3 comes bundled with the venv module to create virtual environments.
 Just run,
 ```
-py -3 -m venv venv
+python -m venv env
 ```
 

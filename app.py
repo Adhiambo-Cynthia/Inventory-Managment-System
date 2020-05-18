@@ -20,9 +20,8 @@ def create_tables():
     db.create_all()
 
 
-
-# conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
-conn=psycopg2.connect("dbname = sales_demo user=dpxcczdczuepco host=ec2-52-73-247-67.compute-1.amazonaws.com port=5432 password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
+#conn=psycopg2.connect("dbname = sales_demo user=dpxcczdczuepco host=ec2-52-73-247-67.compute-1.amazonaws.com port=5432 password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
 
 cur = conn.cursor()
 
@@ -216,6 +215,6 @@ def line():
 
 
 
-if __name__ == '__main__':
+if __name__ == '__app__':
     app.run(debug=True)
 

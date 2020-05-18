@@ -1,4 +1,4 @@
-from main import db
+from app import db
 import datetime
 class Stock(db.Model):
     __tablename__ = 'new_stock'
