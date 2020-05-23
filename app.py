@@ -21,7 +21,7 @@ def create_tables():
 
 
 
-conn=psycopg2.connect("dbname = sales_demo user=prhysvlnbfrktf host=ec2-18-233-32-61.compute-1.amazonaws.com port=5432 password=d8b756cb01d30dbbb011bf8dd69c97a1fd92f0821646b7ce560e9dcaa9d1dca0")
+conn=psycopg2.connect("dbname = d8pv4s4i8mtljv user=prhysvlnbfrktf host=ec2-18-233-32-61.compute-1.amazonaws.com port=5432 password=d8b756cb01d30dbbb011bf8dd69c97a1fd92f0821646b7ce560e9dcaa9d1dca0")
 #conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
 cur = conn.cursor()
 
