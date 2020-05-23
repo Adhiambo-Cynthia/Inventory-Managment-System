@@ -20,10 +20,11 @@ def create_tables():
     db.create_all()
 
 
-conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
-#conn=psycopg2.connect("dbname = sales_demo user=dpxcczdczuepco host=ec2-52-73-247-67.compute-1.amazonaws.com port=5432 password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
 
+#conn=psycopg2.connect("dbname = sales_demo user=dpxcczdczuepco host=ec2-52-73-247-67.compute-1.amazonaws.com port=5432 password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
+conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
 cur = conn.cursor()
+
 
 @app.route('/')
 def home():
@@ -37,10 +38,6 @@ def services():
         return render_template("index.html")
 
 
-# @app.route('/about')
-# def about():
-#         return render_template("about.html", header="About Page")
-
 
 # @app.route('/person/<name>/<int:age>')
 # def person(name,age):
@@ -49,7 +46,7 @@ def services():
 def inventories():
     # http verbs (post,put/update get,delete)-help you create,read,delete from database
     r = Inventories.query.order_by(Inventories.id).all()
-
+    
     cur.execute("""SELECT inv_id, sum(quantity) as "stock"
             	FROM ((SELECT st.inv_id, sum(stock) as "quantity"
             	FROM public.new_stock as st
@@ -151,8 +148,8 @@ def charts():
                      ORDER BY months""")
     records = cur.fetchall()
     conn.commit()
-    cur.close()
-    conn.close()
+    # cur.close()
+    # conn.close()
 
     data=[("Jumia", 20),("Instagram", 15), ("Website", 25), ("Shop-visits", 40)]
     pie_chart=pygal.Pie()

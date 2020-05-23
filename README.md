@@ -33,6 +33,10 @@ This is an inventory Managment system which can be used by small retail shops or
 ```
 pip install Flask
 ```
+And run the app on the terminal by running
+```
+python -m flask run
+```
 ### Other dependancies
 These distributions will be installed automatically when installing Flask.
 
