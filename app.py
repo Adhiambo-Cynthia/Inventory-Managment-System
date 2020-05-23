@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from config import Development
+from config import Production
 import pygal
 import psycopg2
 
@@ -8,7 +8,7 @@ import psycopg2
 
 
 app = Flask(__name__)
-app.config.from_object(Development)
+app.config.from_object(Production)
 
 db = SQLAlchemy(app)
 from models.stock import Stock
@@ -21,8 +21,8 @@ def create_tables():
 
 
 
-#conn=psycopg2.connect("dbname = sales_demo user=dpxcczdczuepco host=ec2-52-73-247-67.compute-1.amazonaws.com port=5432 password=6fd9d07cdea8dd82f56c3c6963ca35e3b1db9fb47b4853e67de34fbf502869fb")
-conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
+conn=psycopg2.connect("dbname = sales_demo user=prhysvlnbfrktf host=ec2-18-233-32-61.compute-1.amazonaws.com port=5432 password=d8b756cb01d30dbbb011bf8dd69c97a1fd92f0821646b7ce560e9dcaa9d1dca0")
+#conn=psycopg2.connect("dbname = sales_demo user=postgres host=localhost port=5432 password=cinadhis99")
 cur = conn.cursor()
 
 
