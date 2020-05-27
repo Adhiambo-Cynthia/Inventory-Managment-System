@@ -142,13 +142,13 @@ def delete(inv_id):
 def charts():
 
 
-    cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
-                     SUM(s.quantity) as total_sales
-                     FROM public.sales as s
-                     GROUP BY months
-                     ORDER BY months""")
-    records = cur.fetchall()
-    conn.commit()
+    # cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
+    #                  SUM(s.quantity) as total_sales
+    #                  FROM public.sales as s
+    #                  GROUP BY months
+    #                  ORDER BY months""")
+    # records = cur.fetchall()
+    # conn.commit()
     # cur.close()
     # conn.close()
 
