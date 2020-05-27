@@ -1,4 +1,4 @@
-from app import db
+from main import db
 class Inventories(db.Model):
     __tablename__='new_inventories'
     id = db.Column(db.Integer, primary_key=True)

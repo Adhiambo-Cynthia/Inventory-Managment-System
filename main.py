@@ -10,6 +10,7 @@ import psycopg2
 app = Flask(__name__)
 app.config.from_object(Production)
 
+#server = app.server
 db = SQLAlchemy(app)
 from models.stock import Stock
 from models.sales import Sales
@@ -212,6 +213,6 @@ def line():
 
 
 
-if __name__ == '__app__':
+if __name__ == '__main__':
     app.run(debug=True)
 
