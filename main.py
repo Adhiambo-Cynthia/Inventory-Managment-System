@@ -149,8 +149,8 @@ def charts():
                      ORDER BY months""")
     records = cur.fetchall()
     conn.commit()
-    cur.close()
-    conn.close()
+    # cur.close()
+    # conn.close()
 
     data=[("Jumia", 20),("Instagram", 15), ("Website", 25), ("Shop-visits", 40)]
     pie_chart=pygal.Pie()
