@@ -142,15 +142,15 @@ def delete(inv_id):
 def charts():
 
 
-    # cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
-    #                  SUM(s.quantity) as total_sales
-    #                  FROM public.sales as s
-    #                  GROUP BY months
-    #                  ORDER BY months""")
-    # records = cur.fetchall()
-    # conn.commit()
-    # cur.close()
-    # conn.close()
+    cur.execute("""SELECT EXTRACT(MONTH FROM s.created_at) AS months,
+                     SUM(s.quantity) as total_sales
+                     FROM new_sales as s
+                     GROUP BY months
+                     ORDER BY months""")
+    records = cur.fetchall()
+    conn.commit()
+    cur.close()
+    conn.close()
 
     data=[("Jumia", 20),("Instagram", 15), ("Website", 25), ("Shop-visits", 40)]
     pie_chart=pygal.Pie()
